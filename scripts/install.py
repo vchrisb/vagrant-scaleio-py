@@ -128,7 +128,7 @@ imconn = im.Im("https://" + args.gwIPaddress,args.gwUsername,args.gwPassword,ver
 imconn._login()
 
 ### UPLOAD RPM PACKAGES TO BE DEPLOYED BY IM ###
-imconn.uploadPackages(args.packagePath) # Adjust to your needs. All RPMs for RHEL6 should exist in this dir except for GUI and Gateway
+imconn.uploadPackages(args.packagePath) # Adjust to your needs. All RPMs for RHEL7 should exist in this dir except for GUI and Gateway
 
 ####################
 # INSTALLER STAGES #

@@ -14,18 +14,18 @@ firstip = 10
 box = "chef/centos-7.0"
 
 # at least 4 nodes
-nodes = 5
-
-gwIPaddress = "#{network}#{firstip}"
-mdm1IPaddress = "#{network}#{firstip + 1}"
-mdm2IPaddress = "#{network}#{firstip + 2}"
-tbIPaddress = "#{network}#{firstip + 3}"
+nodes = 6
 
 Vagrant.configure("2") do |config|
   # try to enable caching to speed up package installation for second run
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
   end
+
+  gwIPaddress = "#{network}#{firstip}"
+  mdm1IPaddress = "#{network}#{firstip + 1}"
+  mdm2IPaddress = "#{network}#{firstip + 2}"
+  tbIPaddress = "#{network}#{firstip + 3}"
 
   nodeIPaddresses = ""
   (1..nodes).each do |i|
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
         node.vm.provision "packages", type: "shell", path: "scripts/packages.sh"
         nodeIPaddresses += "#{network}#{firstip + i} "
       else
-        #node.vm.provision "update", type: "shell", path: "scripts/update.sh"
+
         node.vm.host_name = "gateway"
         node.vm.network "private_network", ip: "#{gwIPaddress}"
 
@@ -62,7 +62,7 @@ Vagrant.configure("2") do |config|
         end
         node.vm.provision "shell" do |s|
           s.path = "scripts/info.py"
-          s.args   = "--gwIPaddress #{gwIPaddress} --mdmUsername admin --mdmPassword #{password} --mdm1IPaddress #{mdm1IPaddress} --mdm2IPaddress #{mdm2IPaddress} "
+          s.args   = "--gwIPaddress #{gwIPaddress} --mdmUsername admin --mdmPassword #{password}"
         end
       end
 
