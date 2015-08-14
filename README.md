@@ -3,7 +3,7 @@ vagrant-scaleio-py
 
 # Description
 
-Vagrantfile to create a EMC ScaleIO lab setup.
+Vagrantfile to create a EMC ScaleIO lab setup leveraging `scaleio-py`from @swevm.
 
 # Usage
 
