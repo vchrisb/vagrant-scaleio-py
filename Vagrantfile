@@ -1,5 +1,3 @@
-# Created by Jonas Rosland, @virtualswede & Matt Cowger, @mcowger
-# Many thanks to this post by James Carr: http://blog.james-carr.org/2013/03/17/dynamic-vagrant-nodes/
 
 # scaleio admin password
 password="Scaleio123"
@@ -22,7 +20,9 @@ Vagrant.configure("2") do |config|
     config.cache.scope = :box
   end
 
+  # the last node to provision will be the gateway and get the "firstip"
   gwIPaddress = "#{network}#{firstip}"
+  # node-1 to node-3 are used for MDM and TB
   mdm1IPaddress = "#{network}#{firstip + 1}"
   mdm2IPaddress = "#{network}#{firstip + 2}"
   tbIPaddress = "#{network}#{firstip + 3}"
