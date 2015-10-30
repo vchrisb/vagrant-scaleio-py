@@ -9,10 +9,10 @@ domain = 'scaleio.local'
 network = "192.168.100."
 firstip = 10
 
-box = "chef/centos-7.0"
+box = "bento/centos-7.1"
 
 # at least 4 nodes
-nodes = 6
+nodes = 4
 
 Vagrant.configure("2") do |config|
   # try to enable caching to speed up package installation for second run
@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
         end
         node.vm.provision "shell" do |s|
           s.path = "scripts/install.py"
-          s.args   = "--nodeUsername root --nodePassword vagrant --mdmPassword #{password} --liaPassword #{password} --gwUsername admin --gwPassword #{password} --gwIPaddress #{gwIPaddress} --packagePath /vagrant/scaleio/ScaleIO_1.32_RHEL7_Download/ --mdm1IPaddress #{mdm1IPaddress} --mdm2IPaddress #{mdm2IPaddress} --tbIPaddress #{tbIPaddress} --nodeIPaddresses #{nodeIPaddresses}"
+          s.args   = "--nodeUsername root --nodePassword vagrant --mdmPassword #{password} --liaPassword #{password} --gwUsername admin --gwPassword #{password} --gwIPaddress #{gwIPaddress} --packagePath /vagrant/scaleio/ScaleIO_1.32_RHEL7_Download/ScaleIO_1.32_RHEL7_Download/ --mdm1IPaddress #{mdm1IPaddress} --mdm2IPaddress #{mdm2IPaddress} --tbIPaddress #{tbIPaddress} --nodeIPaddresses #{nodeIPaddresses}"
         end
         node.vm.provision "shell" do |s|
           s.path = "scripts/config.py"
